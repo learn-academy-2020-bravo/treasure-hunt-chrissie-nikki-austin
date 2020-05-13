@@ -9,30 +9,33 @@ class App extends Component{
   constructor(props){
     super(props)
     this.state = {
-      squares: ["?", "?", "?", "?", "?", "?", "?", "?", "?"],
-      bomb: Math.floor(Math.random()* 9 ),
-      treasure: Math.floor(Math.random()* 9 )
+      squares: ["0", "1", "2", "3", "4", "5", "6", "7", "8"],
+      bomb: Math.floor(Math.random() * 8),
+      treasure: Math.floor(Math.random() * 8),
     }
   }
-  showIndex = (i) => {
-    let setBomb = this.state.squares[6]
-    let setTreasure = this.state.squares[7]
-      if (setBomb[i]=== 6){
-        return "bomb"
-      } else if (setTreasure [i] === 7){
-        return "treasure"
-      }else{
-        return "tree"
+  whichIndex = (index) => {
+    if ((this.state.bomb === index)){
+          return alert("bomb")
+}
+    else if ((this.state.treasure === index)){
+          return alert("treasure")
+        }
+      else {
+        return alert("tree")
       }
+
   }
 
   render(){
     let square = this.state.squares.map((value, index)=> {
+
+
       return(
         <Square
           value={ value }
           index={ index }
-          showIndex= {this.showIndex}
+          whichIndex= {this.whichIndex}
         />
       )
     })
