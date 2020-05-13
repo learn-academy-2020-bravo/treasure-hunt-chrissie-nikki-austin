@@ -12,22 +12,28 @@ class App extends Component{
       tree: "tree"
     }
   }
-    randomBomb = () => {
-      let randomBomb = Math.floor(Math.random()* this.state.squares.length )
-      this.setState({bomb:randomBomb})
-        if ({ this.state.squares } === randomBomb){
-          alert ("You Lose!")
-        }
+
+
+  randomBomb = () => {
+    let bomb = Math.floor(Math.random()* this.state.squares.length )
+    this.setState({bomb:randomBomb})
+    if ( this.state.squares  === randomBomb){
+      alert ("You Lose!")
     }
-    randomTreasure = () => {
-      let randomTreasure = Math.floor(Math.random()* this.state.squares.length )
-      this.setState({treasure:randomTreasure})
-      if ( this.state.bomb === this.state.treasure) {
-        return randomTreasure
-      }
-      
   }
+
+  randomTreasure = () => {
+    let treasure = Math.floor(Math.random()* this.state.squares.length )
+    this.setState({treasure:randomTreasure})
+    if ( this.state.bomb === this.state.treasure) {
+      randomTreasure()
+    }
   }
+  componentDidMount = () => {
+    randomBomb()
+    randomTreasure()
+  }
+
 
   //if 1-7 = tree
   // if else
@@ -38,6 +44,7 @@ class App extends Component{
   render(){
     let square = this.state.squares.map((value, index)=> {
       return(
+
         <Square
           value={ value }
         />
@@ -45,10 +52,12 @@ class App extends Component{
     })
     return(
       <React.Fragment>
-        <h1>Treasure Hunt App</h1>
-        <div>
-          { square }
-        </div>
+
+
+          { this.state.treasure}
+          { this.state.bomb }
+            random words
+
 
       </React.Fragment>
     )
