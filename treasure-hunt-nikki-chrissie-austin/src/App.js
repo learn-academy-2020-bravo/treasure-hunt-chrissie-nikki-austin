@@ -8,21 +8,25 @@ class App extends Component{
     this.state = {
       squares: ["?", "?", "?", "?", "?", "?", "?", "?", "?"],
       bomb: "bomb",
-      treausure: "treausre",
+      treasure: "treasure",
       tree: "tree"
     }
   }
-  randomBomb = () => {
-  let randomBomb = Math.floor(Math.random()* this.state.squares.length )
-    this.setState({bomb:randomBomb})
-}
-  randomTreasure = () => {
-  let randomTreasure = Math.floor(Math.random()* this.state.squares.length )
-    this.setState({treasure:randomTreasure})
-    if ( this.state.bomb === this.state.treausure) {
-      return randomTreasure
+    randomBomb = () => {
+      let randomBomb = Math.floor(Math.random()* this.state.squares.length )
+      this.setState({bomb:randomBomb})
+        if ({ this.state.squares } === randomBomb){
+          alert ("You Lose!")
+        }
     }
-
+    randomTreasure = () => {
+      let randomTreasure = Math.floor(Math.random()* this.state.squares.length )
+      this.setState({treasure:randomTreasure})
+      if ( this.state.bomb === this.state.treasure) {
+        return randomTreasure
+      }
+      
+  }
   }
 
   //if 1-7 = tree
