@@ -7,44 +7,13 @@ class App extends Component{
     super(props)
     this.state = {
       squares: ["?", "?", "?", "?", "?", "?", "?", "?", "?"],
-      bomb: "bomb",
-      treausure: "treasure"
+      bomb: Math.floor(Math.random()* 9 ),
+      treasure: Math.floor(Math.random()* 9 )
     }
   }
-
-
-
-handleChange = (event) => {
-  // a method that will take the value from an input and save it in the state key "name"
-  this.setState({ squares: event.target.value })
-}
-
- // findStuff = () => {
- //   if (this.state.squares === this.state.bomb){
- //     alert (" BOMB")
- //   }else if( this.state.squares === this.state.treasure ){
- //    alert ("winnnah")
- //   }
- //  }
-
-
-//   randomTreasure = () => {
-//   let setTreasure = Math.floor(Math.random()* this.state.squares.length )
-//     this.setState({treasure:setTreasure})
-//
-//
-//     }
-//   randomBomb = () => {
-//   let setBomb = Math.floor(Math.random()* this.state.squares.length )
-//     this.setState({bomb:setBomb})
-// }
-
-
-
-  //if 1-7 = tree
-  // if else
-  // if else 8 = bomb
-  // if else 9 = Treasure
+  showIndex = () => {
+    alert("hello")
+  }
 
 
   render(){
@@ -53,13 +22,15 @@ handleChange = (event) => {
         <Square
           value={ value }
           index={ index }
+          showIndex= {this.showIndex}
         />
       )
     })
     return(
       <React.Fragment>
         <h1>Treasure Hunt App</h1>
-        <div>
+
+        <div id="square">
           { square }
         </div>
 
