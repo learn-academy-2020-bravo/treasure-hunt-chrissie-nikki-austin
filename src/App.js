@@ -1,5 +1,8 @@
 import React, { Component } from 'react'
 import Square from './components/Square'
+import BabyGroot from './images/Baby-Groot.png'
+import Bomb from './images/Bomb.png'
+import TreasureChest from './images/Treasure-Chest.png'
 import './App.css'
 
 class App extends Component{
@@ -11,10 +14,17 @@ class App extends Component{
       treasure: Math.floor(Math.random()* 9 )
     }
   }
-  showIndex = () => {
-    alert("hello")
+  showIndex = (i) => {
+    let setBomb = this.state.squares[6]
+    let setTreasure = this.state.squares[7]
+      if (setBomb[i]=== 6){
+        return "bomb"
+      } else if (setTreasure [i] === 7){
+        return "treasure"
+      }else{
+        return "tree"
+      }
   }
-
 
   render(){
     let square = this.state.squares.map((value, index)=> {
