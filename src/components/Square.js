@@ -1,18 +1,14 @@
-mport React, { Component } from 'react'
-import './Square.css'
-class Square extends Component{
+import React, { Component } from 'react'
 
-  // findStuff = () => {
-  //   if (this.state.squares === this.state.bomb){
-  //     alert (" BOMB")
-  //   }else if( this.state.squares === this.state.treasure ){
-  //    alert ("winnnah")
-  //   }
-  //  }
+class Square extends Component{
+  showIndex = () =>{
+    alert (this.props.index)
+  }
   render(){
     return(
       <React.Fragment>
-        <div id="square" >{ this.props.value }</div>
+        <div id="square"
+            onClick ={this.showIndex}>{ this.props.value }</div>
       </React.Fragment>
     )
   }
