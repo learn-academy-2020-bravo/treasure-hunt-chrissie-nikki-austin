@@ -12,17 +12,25 @@ class App extends Component{
       squares: ["0", "1", "2", "3", "4", "5", "6", "7", "8"],
       bomb: Math.floor(Math.random() * 8),
       treasure: Math.floor(Math.random() * 8),
+      image:""
+
     }
   }
   whichIndex = (index) => {
-    if ((this.state.bomb === index)){
-          return alert("bomb")
+    if (this.state.bomb === index){
+        this.setState({image:Bomb})
+        console.log("bomb")
 }
-    else if ((this.state.treasure === index)){
-          return alert("treasure")
+    else if (this.state.treasure === index){
+
+           this.setState({image:TreasureChest})
+           console.log("treasure")
+
         }
       else {
-        return alert("tree")
+         this.setState({image:BabyGroot})
+         console.log("grut")
+
       }
 
   }
@@ -46,7 +54,7 @@ class App extends Component{
         <div id="square">
           { square }
         </div>
-
+        <div id="img"> <img src={this.state.image} style = {{"width":"50%"}}/></div>
       </React.Fragment>
     )
   }
