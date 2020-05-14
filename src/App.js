@@ -49,12 +49,13 @@ class App extends Component{
     })
     return(
       <React.Fragment>
+      <div id="container">
         <h1>Treasure Hunt App</h1>
-
-        <div id="square">
-          { square }
-        </div>
-        <div id="img"> <img src={this.state.image} style = {{"width":"50%"}}/></div>
+          <div id = "grid">
+           { square }
+          </div>
+          <div id="img"> <img src={this.state.image} style = {{"width":"10%"}}/></div>
+     </div>
       </React.Fragment>
     )
   }
