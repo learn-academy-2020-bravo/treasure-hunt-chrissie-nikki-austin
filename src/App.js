@@ -71,7 +71,7 @@ class App extends Component{
     return(
       <React.Fragment>
       <div id="background">
-          <h1>Treasure Hunt App</h1>
+      <h1>Treasure Hunt App</h1>
           <div id="container">
 
               <div id = "grid">
