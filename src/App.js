@@ -22,17 +22,17 @@ class App extends Component{
       let newHiddenSquares = [...this.state.hiddenSquares]
        newHiddenSquares[index] = false
        let countDown = this.state.counter -1
-        console.log(this.state.counter)
         let image = null
         console.log("hi", this.state.hiddenSquares)
-          if (this.state.treasure === index){
+          if (this.state.counter === 0 ){
+          }else if(this.state.treasure === index){
             image = TreasureChest
             this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
-            alert ("You Win!")
+            setTimeout(() => {alert ("You Win!")}, 500)
             }else if( this.state.bomb === index){
             image = Bomb
             this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
-            alert ("You Lose!")
+            setTimeout(() => {alert ("You Lose!")}, 500)
           }else {
             image = BabyGroot
             this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
