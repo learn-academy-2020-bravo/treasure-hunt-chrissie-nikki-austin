@@ -5,6 +5,7 @@ import Bomb from './images/Bomb.png'
 import TreasureChest from './images/Treasure-Chest.png'
 import './App.css'
 import Background from './images/Backgroun.png'
+import { Button } from 'reactstrap';
 
 class App extends Component{
   constructor(props){
@@ -12,12 +13,25 @@ class App extends Component{
     this.state = {
       hiddenSquares: [true,true,true,true,true,true,true,true,true],
       bomb: Math.floor(Math.random() * 8),
+      treasureLocation: null,
       treasure: Math.floor(Math.random() * 8),
       counter: 6,
       gameOver: false
 
     }
-  }
+}
+
+componentDidMount = () => {
+  const { bomb } = this.state
+  const { treasure } = this.state
+console.log(bomb,treasure)
+this.setState({ treasureLocation: treasure, bombLocation: bomb})
+}
+
+
+
+
+
   handleClicked = (index) => {
       let newHiddenSquares = [...this.state.hiddenSquares]
        newHiddenSquares[index] = false
@@ -25,14 +39,16 @@ class App extends Component{
         let image = null
         console.log("hi", this.state.hiddenSquares)
           if (this.state.counter === 0 ){
+          this.setState({ gameOver: true})
+            alert ("loser")
           }else if(this.state.treasure === index){
             image = TreasureChest
-            this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
+            this.setState ({hiddenSquares: newHiddenSquares, counter: countDown, gameOver: true})
             setTimeout(() => {alert ("You Win!")}, 500)
             }else if( this.state.bomb === index){
             image = Bomb
-            this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
-            setTimeout(() => {alert ("You Lose!")}, 500)
+            this.setState ({hiddenSquares: newHiddenSquares, counter: countDown, gameOver: true})
+            setTimeout(() => {  alert ("You Lose!")}, 500)
           }else {
             image = BabyGroot
             this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
@@ -41,14 +57,22 @@ class App extends Component{
 
      }
 
-    // endGame = () => {
-    //   if( this.state.counter === 0){
-    //    return alert ("game over")
-    //    return alert("you win")
-    //    return alert("you lose")
+  restartGame = () =>{
+    this.setState({
+      hiddenSquares: [true,true,true,true,true,true,true,true,true],
+      bomb: Math.floor(Math.random() * 8),
+      treasure: Math.floor(Math.random() * 8),
+      counter: 6,
+      gameOver: false
 
-    //  }
-//  }
+    })
+    this.componentDidMount()
+  }
+
+
+
+
+
 
     render(){
       // console.log("treasure", this.state.treasure)
@@ -89,6 +113,7 @@ class App extends Component{
               </div>
          </div>
          <h3> you have {this.state.counter} turns left</h3>
+         <button color="warning"  onClick= {this.restartGame}>Play Again</button>
          </div>
       </React.Fragment>
     )
