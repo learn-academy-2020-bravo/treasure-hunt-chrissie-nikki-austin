@@ -4,6 +4,7 @@ import BabyGroot from './images/Baby-Groot.png'
 import Bomb from './images/Bomb.png'
 import TreasureChest from './images/Treasure-Chest.png'
 import './App.css'
+import Background from './images/Backgroun.png'
 
 class App extends Component{
   constructor(props){
@@ -69,14 +70,16 @@ class App extends Component{
 
     return(
       <React.Fragment>
-      <h1>Treasure Hunt App</h1>
-      <div id="container">
+      <div id="background">
+          <h1>Treasure Hunt App</h1>
+          <div id="container">
 
-          <div id = "grid">
-           { square }
-          </div>
-     </div>
-     <h3> you have {this.state.counter} turns left</h3>
+              <div id = "grid">
+               { square }
+              </div>
+         </div>
+         <h3> you have {this.state.counter} turns left</h3>
+         </div>
       </React.Fragment>
     )
   }
