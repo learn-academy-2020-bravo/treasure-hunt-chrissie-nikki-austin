@@ -11,7 +11,9 @@ class App extends Component{
     this.state = {
       hiddenSquares: [true,true,true,true,true,true,true,true,true],
       bomb: Math.floor(Math.random() * 8),
-      treasure: Math.floor(Math.random() * 8)
+      treasure: Math.floor(Math.random() * 8),
+      counter: 6,
+      gameOver: false
 
 
 
@@ -21,9 +23,19 @@ class App extends Component{
       let newHiddenSquares = [...this.state.hiddenSquares]
        newHiddenSquares[index] = false
        this.setState ({hiddenSquares: newHiddenSquares})
+       let countDown = this.state.counter -1
+        this.setState ({counter: countDown})
+        console.log(this.state.counter)
 
 
      }
+
+    endGame = () => {
+      if( this.state.counter === 0){
+       return alert ("game over")
+
+    }
+}
 
     render(){
       console.log(this.state.hiddenSquares)
@@ -32,8 +44,10 @@ class App extends Component{
       if (value === false){
         if (this.state.treasure === index){
           image = TreasureChest
-        }else if( this.state.bomb === index){
+          return alert("you win")
+          }else if( this.state.bomb === index){
           image = Bomb
+          return alert("you lose")
         }else {
           image = BabyGroot
         }
@@ -55,12 +69,14 @@ class App extends Component{
 
     return(
       <React.Fragment>
+      <h1>Treasure Hunt App</h1>
       <div id="container">
-        <h1>Treasure Hunt App</h1>
+
           <div id = "grid">
            { square }
           </div>
      </div>
+     <h3> you have {this.state.counter} turns left</h3>
       </React.Fragment>
     )
   }

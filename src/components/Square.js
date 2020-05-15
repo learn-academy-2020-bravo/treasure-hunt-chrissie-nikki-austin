@@ -12,7 +12,7 @@ class Square extends Component{
            onClick= {() => this.props.handleClicked(this.props.index)}
         >
         { this.props.value }
-        <div id="img"> <img src={this.props.image} style = {{"width":"35%"}}/></div>
+        <div id="img"> <img src={this.props.image} style = {{"width":"99%"}}/></div>
         </div>
       </React.Fragment>
     )
