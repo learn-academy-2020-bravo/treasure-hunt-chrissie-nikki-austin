@@ -15,39 +15,49 @@ class App extends Component{
       counter: 6,
       gameOver: false
 
-
-
     }
   }
   handleClicked = (index) => {
       let newHiddenSquares = [...this.state.hiddenSquares]
        newHiddenSquares[index] = false
-       this.setState ({hiddenSquares: newHiddenSquares})
        let countDown = this.state.counter -1
-        this.setState ({counter: countDown})
         console.log(this.state.counter)
+        let image = null
+        console.log("hi", this.state.hiddenSquares)
+          if (this.state.treasure === index){
+            image = TreasureChest
+            this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
+            alert ("You Win!")
+            }else if( this.state.bomb === index){
+            image = Bomb
+            this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
+            alert ("You Lose!")
+          }else {
+            image = BabyGroot
+            this.setState ({hiddenSquares: newHiddenSquares, counter: countDown})
+          }
 
 
      }
 
-    endGame = () => {
-      if( this.state.counter === 0){
-       return alert ("game over")
+    // endGame = () => {
+    //   if( this.state.counter === 0){
+    //    return alert ("game over")
+    //    return alert("you win")
+    //    return alert("you lose")
 
-    }
-}
+    //  }
+//  }
 
     render(){
-      console.log(this.state.hiddenSquares)
+      // console.log("treasure", this.state.treasure)
     let square = this.state.hiddenSquares.map((value, index)=> {
       let image = null
       if (value === false){
         if (this.state.treasure === index){
           image = TreasureChest
-          return alert("you win")
           }else if( this.state.bomb === index){
           image = Bomb
-          return alert("you lose")
         }else {
           image = BabyGroot
         }
