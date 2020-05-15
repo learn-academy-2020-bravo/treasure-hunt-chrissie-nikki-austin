@@ -9,44 +9,50 @@ class App extends Component{
   constructor(props){
     super(props)
     this.state = {
-      squares: ["0", "1", "2", "3", "4", "5", "6", "7", "8"],
+      hiddenSquares: [true,true,true,true,true,true,true,true,true],
       bomb: Math.floor(Math.random() * 8),
-      treasure: Math.floor(Math.random() * 8),
-      image:""
+      treasure: Math.floor(Math.random() * 8)
+
+
 
     }
   }
-  whichIndex = (index) => {
-    if (this.state.bomb === index){
-        this.setState({image:Bomb})
-        console.log("bomb")
-}
-    else if (this.state.treasure === index){
+  handleClicked = (index) => {
+      let newHiddenSquares = [...this.state.hiddenSquares]
+       newHiddenSquares[index] = false
+       this.setState ({hiddenSquares: newHiddenSquares})
 
-           this.setState({image:TreasureChest})
-           console.log("treasure")
 
+     }
+
+    render(){
+      console.log(this.state.hiddenSquares)
+    let square = this.state.hiddenSquares.map((value, index)=> {
+      let image = null
+      if (value === false){
+        if (this.state.treasure === index){
+          image = TreasureChest
+        }else if( this.state.bomb === index){
+          image = Bomb
+        }else {
+          image = BabyGroot
         }
-      else {
-         this.setState({image:BabyGroot})
-         console.log("grut")
 
       }
-
-  }
-
-  render(){
-    let square = this.state.squares.map((value, index)=> {
-
-
       return(
         <Square
           value={ value }
           index={ index }
-          whichIndex= {this.whichIndex}
-        />
-      )
-    })
+          handleClicked= {this.handleClicked}
+          image = {image}
+          key = {index}
+          />
+        )
+    }
+  )
+
+
+
     return(
       <React.Fragment>
       <div id="container">
@@ -54,7 +60,6 @@ class App extends Component{
           <div id = "grid">
            { square }
           </div>
-          <div id="img"> <img src={this.state.image} style = {{"width":"10%"}}/></div>
      </div>
       </React.Fragment>
     )
