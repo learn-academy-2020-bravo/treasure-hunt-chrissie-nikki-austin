@@ -2,6 +2,7 @@
 #container {
   display: flex;
   justify-content: center;
+
 }
 
 #grid {
@@ -9,10 +10,32 @@
   width: 360px;
   flex-wrap: wrap;
   margin: 0 center;
+  color: white;
 }
 
 #square {
   width: 100px;
   height: 100px;
-  border:3px solid black;
+  border:3px solid white;
+}
+#background{
+  background-image: url('./images/Backgroun.png');
+  height: 50em;
+  width: 50em;
+
+}
+h1{
+  display:flex;
+  justify-content: center;
+  color: white;
+  font-family: fantasy;
+
+}
+
+h3{
+  display:flex;
+  justify-content: center;
+  color: white;
+  font-family: fantasy;
+
 }
